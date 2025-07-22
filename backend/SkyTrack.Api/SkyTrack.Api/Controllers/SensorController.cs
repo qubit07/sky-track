@@ -3,9 +3,7 @@ using SkyTrack.Api.Services;
 
 namespace SkyTrack.Api.Controllers
 {
-    [ApiController]
-    [Route("[controller]")]
-    public class SensorController(SensorService sensorService) : ControllerBase
+    public class SensorController(SensorService sensorService) : BaseController
     {
 
         [HttpGet]

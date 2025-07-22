@@ -11,6 +11,10 @@ builder.Services.AddScoped<SkyTrack.Api.Services.NotificationService>();
 builder.Services.AddScoped<SkyTrack.Api.Services.VideoService>();
 builder.Services.AddScoped<SkyTrack.Api.Services.SimulationService>();
 
+builder.Services.AddHostedService<SkyTrack.Api.Services.VideoCleanupHostedService>();
+
+builder.Services.Configure<SkyTrack.Api.Models.CleanupOptions>(builder.Configuration.GetSection("CleanupOptions"));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
