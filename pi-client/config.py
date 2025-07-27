@@ -1,0 +1,27 @@
+# config.py
+
+import os
+
+# Camera Configuration
+VIDEO_DURATION_SECONDS = 10 
+VIDEO_MAX_DURATION_SECONDS = 30
+VIDEO_OUTPUT_DIR = "videos"
+
+# Restart configuration
+RESTART_ENABLED = True
+RESTART_TIME = "10:00"
+COOL_DOWN_PERIOD_SECONDS = 60 
+
+# MQTT
+MQTT_BROKER_HOST = os.getenv("MQTT_BROKER_HOST", "localhost")
+MQTT_BROKER_PORT = 1883
+MQTT_TOPIC_VIDEO_TRIGGER = "video/motion"
+MQTT_TOPIC_VIDEO_RECORDED = "video/recorded"
+
+# Upload
+ENABLE_CLOUD_UPLOAD = True
+CLOUD_UPLOAD_URL = os.getenv("CLOUD_UPLOAD_URL", "")
+UPLOAD_AUTH_TOKEN = os.getenv("UPLOAD_AUTH_TOKEN", "")
+
+# Logging
+LOG_LEVEL = "INFO"  # DEBUG, INFO, WARNING, ERROR

@@ -1,3 +1,5 @@
+# record_video.py
+# This script preview a video using the Picamera2 library.
 from picamera2 import Picamera2
 from picamera2.encoders import H264Encoder
 import time

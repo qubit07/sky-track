@@ -1,3 +1,5 @@
+# preview_video.py
+# This script provides a preview of the camera feed using Picamera2.
 from picamera2 import Picamera2, Preview
 import time
 
