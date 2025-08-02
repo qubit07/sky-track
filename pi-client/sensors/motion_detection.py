@@ -1,35 +1,30 @@
 # motion_detection.py
 # This module implements motion detection using OpenCV.
-import cv2
+from picamera2 import Picamera2
+import numpy as np
+import time
 
 class MotionDetection:
-    def __init__(self, threshold=30, min_area=500):
+    def __init__(self, threshold=10):
         self.previous_frame = None
         self.threshold = threshold
-        self.min_area = min_area
 
     def detect(self, frame):
-        # convert the frame to grayscale and apply Gaussian blur
-        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-        gray = cv2.GaussianBlur(gray, (21, 21), 0)
+        # convert the frame to grayscale
+        gray = np.mean(frame, axis=2).astype(np.uint8) 
         
         if self.previous_frame is None:
             self.previous_frame = gray
             return False
         
         # compute the absolute difference between the current frame and previous frame
-        frame_delta = cv2.absdiff(self.previous_frame, gray)
+        diff = np.abs(gray.astype(np.int16) - self.previous_frame.astype(np.int16))
+        motion_level = np.mean(diff)
+        
         self.previous_frame = gray
 
-        # threshold the delta image
-        thresh = cv2.threshold(frame_delta, self.threshold, 255, cv2.THRESH_BINARY)[1]
-        thresh = cv2.dilate(thresh, None, iterations=2)
-
-        # find contours in the thresholded image
-        contours, _ = cv2.findContours(thresh.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-        for contour in contours:
-            # if we found a contour that is large enough, motion is detected
-            if cv2.contourArea(contour) >= self.min_area:
-                return True
-        # no significant motion detected    
+        if motion_level > self.threshold:
+            print(f"Motion detected with level: {motion_level}")
+            return True
+        
         return False

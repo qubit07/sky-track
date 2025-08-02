@@ -1,6 +1,6 @@
 # capture_image.py
 # This script captures an image using the Picamera2 library.
-from picamera2 import Picamera2, Preview
+from picamera2 import Picamera2
 import time
 
 picam2 = Picamera2()
