@@ -42,13 +42,13 @@ namespace SkyTrack.Api.Services
                 }
 
                 // Wait for a specified interval before the next cleanup operation
-                var interval = TimeSpan.FromMinutes(_options.Value.IntervalHours);
-                if (interval.TotalMinutes <= 0)
+                var interval = TimeSpan.FromHours(_options.Value.IntervalHours);
+                if (interval.TotalHours <= 0)
                 {
                     _logger.LogWarning("Invalid cleanup interval configured. Defaulting to 12 hours.");
                     interval = TimeSpan.FromHours(12);
                 }
-                _logger.LogInformation($"Next video cleanup will occur in {interval.TotalHours} minutes.");
+                _logger.LogInformation($"Next video cleanup will occur in {interval.TotalHours} hours.");
                 Task.Delay(interval, stoppingToken).Wait(stoppingToken);
             }
         }

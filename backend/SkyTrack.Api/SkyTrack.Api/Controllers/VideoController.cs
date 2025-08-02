@@ -6,8 +6,6 @@ namespace SkyTrack.Api.Controllers
 {
     public class VideoController(VideoService videoService) : BaseController
     {
-
-
         [HttpPost("mark")]
         [ValidateAntiForgeryToken]
         public ActionResult MarkVideo(MarkVideoDto dto)

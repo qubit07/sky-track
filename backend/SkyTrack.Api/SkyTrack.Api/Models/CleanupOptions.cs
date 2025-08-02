@@ -2,8 +2,8 @@
 {
     public class CleanupOptions
     {
-        public bool Enabled { get; set; }
-        public int IntervalHours { get; set; }
-        public int RetentionDays { get; set; }
+        public required bool Enabled { get; set; }
+        public required int IntervalHours { get; set; }
+        public required int RetentionDays { get; set; }
     }
 }

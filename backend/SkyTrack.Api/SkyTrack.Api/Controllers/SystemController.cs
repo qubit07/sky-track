@@ -5,8 +5,6 @@ namespace SkyTrack.Api.Controllers
 {
     public class SystemController(SimulationService simulationService) : BaseController
     {
-
-
         [HttpPost("simulation/start")]
         [ValidateAntiForgeryToken]
         public ActionResult StartSimulation()
