@@ -14,6 +14,9 @@ builder.Services.AddScoped<VideoService>();
 builder.Services.AddScoped<SimulationService>();
 builder.Services.AddScoped<IPhotoService, CloudinaryPhotoService>();
 
+builder.Services.AddSingleton<MqttService>();
+
+builder.Services.AddHostedService<MqttHostedService>();
 builder.Services.AddHostedService<VideoCleanupHostedService>();
 
 builder.Services.Configure<CleanupOptions>(builder.Configuration.GetSection("CleanupOptions"));

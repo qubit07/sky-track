@@ -2,7 +2,9 @@
 # This module implements motion detection using OpenCV.
 from picamera2 import Picamera2
 import numpy as np
-import time
+import logging
+
+logger = logging.getLogger(__name__) 
 
 class MotionDetection:
     def __init__(self, threshold=10):
@@ -24,7 +26,7 @@ class MotionDetection:
         self.previous_frame = gray
 
         if motion_level > self.threshold:
-            print(f"Motion detected with level: {motion_level}")
+            logger.info(f"Motion detected with level: {motion_level}")
             return True
         
         return False

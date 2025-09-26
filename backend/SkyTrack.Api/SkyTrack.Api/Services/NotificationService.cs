@@ -12,9 +12,6 @@ namespace SkyTrack.Api.Services
             {
                 throw new ArgumentException("Invalid device registration data.");
             }
-            // Here you would typically save the device registration details to a database
-            // For demonstration purposes, we will just print the details to the console
-            // and store them in a list.
 
             logger.LogInformation($"Registering device for user {dto.UserId}: Token={dto.DeviceToken}, Type={dto.DeviceType}");
             _registeredDevices.Add(dto);
@@ -34,6 +31,7 @@ namespace SkyTrack.Api.Services
         }
         public IEnumerable<NotificationRegisterDto> GetRegisteredDevices()
         {
+            logger.LogWarning($"Get Devices called. Total registered devices: {_registeredDevices.Count}");
             return _registeredDevices;
         }
 

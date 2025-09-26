@@ -8,7 +8,6 @@ namespace SkyTrack.Api.Controllers
     {
 
         [HttpPost("register")]
-        [ValidateAntiForgeryToken]
         public ActionResult RegisterDevice([FromBody] NotificationRegisterDto dto)
         {
             notificationService.RegisterDevice(dto);
@@ -17,7 +16,6 @@ namespace SkyTrack.Api.Controllers
         }
 
         [HttpPost("unregister")]
-        [ValidateAntiForgeryToken]
         public ActionResult RemoveDevice([FromBody] NotificationUnregisterDto dto)
         {
             notificationService.UnregisterDevice(dto);
